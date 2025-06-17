@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Parte por el Todo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #111827; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .fade-in { animation: fadeIn 0.6s ease-out forwards; }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+        .tab-button.active { background-color: #4f46e5; color: #ffffff; }
+        .modal { display: none; }
+        .modal.active { display: flex; }
+        /* Mejora para el scroll del modal en navegadores webkit */
+        .modal-content-scroll::-webkit-scrollbar { width: 8px; }
+        .modal-content-scroll::-webkit-scrollbar-track { background: #1f2937; }
+        .modal-content-scroll::-webkit-scrollbar-thumb { background: #4f46e5; border-radius: 4px; }
+    </style>
+</head>
+<body class="text-gray-200">
+    <div class="container mx-auto p-4 md:p-8 max-w-4xl">
+        <header class="text-center mb-8">
+            <h1 class="text-4xl md:text-5xl font-extrabold text-white tracking-tight">La Parte por el Todo</h1>
+            <p class="mt-2 text-lg text-gray-400">Un juego de misterios semanales.</p>
+        </header>
+
+        <!-- Navegación por Pestañas -->
+        <nav class="flex justify-center border-b border-gray-700 mb-8">
+            <button data-tab="en-curso" class="tab-button text-gray-300 hover:bg-gray-700/50 font-semibold py-3 px-6 transition active">Misterios en Curso</button>
+            <button data-tab="archivo" class="tab-button text-gray-300 hover:bg-gray-700/50 font-semibold py-3 px-6 transition">Archivo de Soluciones</button>
+            <button data-tab="sobre" class="tab-button text-gray-300 hover:bg-gray-700/50 font-semibold py-3 px-6 transition">Sobre el Proyecto</button>
+        </nav>
+
+        <main>
+            <!-- Contenedores para las tarjetas de los juegos -->
+            <div id="en-curso" class="tab-content active grid grid-cols-1 md:grid-cols-2 gap-6"></div>
+            <div id="archivo" class="tab-content grid grid-cols-1 md:grid-cols-2 gap-6"></div>
+            
+            <!-- Contenido de la pestaña "Sobre el proyecto" -->
+            <div id="sobre" class="tab-content">
+                <div class="bg-gray-800 rounded-xl shadow-lg p-6 md:p-8 space-y-6 fade-in">
+                    <div class="prose prose-invert max-w-none prose-p:text-gray-300 prose-headings:text-white">
+                        <h2>¿Qué es "La Parte por el Todo"?</h2>
+                        <p>Este es un pequeño proyecto de entretenimiento inspirado en el famoso concurso "Saber y Ganar". El objetivo es adivinar "el todo" (una persona, lugar, película, etc.) a partir de pequeñas "partes" que se revelan semanalmente.</p>
+                        <h3>¿Cómo se juega?</h3>
+                        <ol>
+                            <li>Visita la pestaña <strong>Misterios en Curso</strong> para ver los juegos activos.</li>
+                            <li>Haz clic en un misterio para ver todas sus pistas.</li>
+                            <li>Cuando creas tener la solución, ¡usa el formulario para enviarla!</li>
+                            <li>Una vez resuelto, el juego pasará al <strong>Archivo de Soluciones</strong>.</li>
+                        </ol>
+                    </div>
+                    <div class="border-t border-gray-700 pt-6">
+                         <h3 class="text-xl font-bold text-white mb-4">Sígueme y contacta</h3>
+                         <div class="flex flex-col sm:flex-row gap-4">
+                             <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 bg-gray-700 hover:bg-indigo-600 transition-colors p-3 rounded-lg w-full justify-center">
+                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16"><path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.917 3.917 0 0 0-1.417.923A3.927 3.927 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.916 3.916 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.926 3.926 0 0 0-.923-1.417A3.917 3.917 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0h.003zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599.28.28.453.546.598.92.11.282.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.47 2.47 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.478 2.478 0 0 1-.92-.598 2.48 2.48 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.231 0-2.136.008-2.388.046-3.231.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92.28-.28.546-.453.92-.598.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045v.002zm4.988 1.884a1.161 1.161 0 1 0 0 2.322 1.161 1.161 0 0 0 0-2.322zM8 4.202a3.79 3.79 0 1 0 0 7.58 3.79 3.79 0 0 0 0-7.58zm0 1.441a2.35 2.35 0 1 1 0 4.7 2.35 2.35 0 0 1 0-4.7z"/></svg>
+                                 <span>Instagram</span>
+                             </a>
+                         </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Estructura del Modal (Ventana Emergente) -->
+    <div id="game-modal" class="modal fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center p-4 z-50">
+        <div class="bg-gray-800 rounded-2xl shadow-2xl w-full max-w-2xl max-h-[90vh] flex flex-col">
+            <header class="flex-shrink-0 p-4 border-b border-gray-700 flex justify-between items-center">
+                <h2 id="modal-title" class="text-2xl font-bold text-white"></h2>
+                <button id="modal-close-btn" class="text-gray-400 hover:text-white text-3xl leading-none">&times;</button>
+            </header>
+            <div id="modal-content" class="p-6 overflow-y-auto modal-content-scroll"></div>
+        </div>
+    </div>
+
+    <script>
+        const dom = {
+            tabs: document.querySelectorAll('.tab-button'),
+            tabContents: document.querySelectorAll('.tab-content'),
+            enCursoContainer: document.getElementById('en-curso'),
+            archivoContainer: document.getElementById('archivo'),
+            modal: document.getElementById('game-modal'),
+            modalTitle: document.getElementById('modal-title'),
+            modalContent: document.getElementById('modal-content'),
+            modalCloseBtn: document.getElementById('modal-close-btn'),
+        };
+
+        const GAMES_INDEX_PATH = 'games/index.json';
+
+        function renderSummaryCard(game) {
+            const statusPill = game.isSolved
+                ? `<span class="bg-green-500 text-white text-xs font-semibold px-2 py-1 rounded-full">Resuelto</span>`
+                : `<span class="bg-yellow-500 text-gray-900 text-xs font-semibold px-2 py-1 rounded-full">En curso</span>`;
+            
+            const lastUpdated = new Date(game.lastUpdated).toLocaleDateString('es-ES', { day: 'numeric', month: 'short', year: 'numeric' });
+
+            const card = document.createElement('div');
+            card.className = 'bg-gray-800/80 hover:bg-gray-800 transition-colors cursor-pointer rounded-xl shadow-lg p-5 flex flex-col justify-between fade-in';
+            card.innerHTML = `
+                <div>
+                    <div class="flex justify-between items-start mb-2">
+                        <h3 class="text-xl font-bold text-white pr-2">${game.title}</h3>
+                        ${statusPill}
+                    </div>
+                    <p class="text-sm text-gray-400">Pistas publicadas: ${game.clues.length}</p>
+                </div>
+                <div class="mt-4 border-t border-gray-700 pt-3 text-right">
+                    <p class="text-xs text-gray-500">Actualizado: ${lastUpdated}</p>
+                </div>`;
+            
+            card.addEventListener('click', () => openModalWithGame(game));
+            return card;
+        }
+
+        function renderModalContent(game) {
+            const cluesHTML = game.clues.map((clue, index) => {
+                let contentHTML = '';
+                switch (clue.type) {
+                    case 'image': contentHTML = `<img src="${clue.content}" alt="Pista" class="my-2 rounded-lg w-full h-auto object-cover max-h-96">`; break;
+                    case 'audio': contentHTML = `<audio controls src="${clue.content}" class="my-2 w-full">Audio no soportado.</audio>`; break;
+                    case 'video': contentHTML = `<video controls src="${clue.content}" class="my-2 rounded-lg w-full">Vídeo no soportado.</video>`; break;
+                }
+                // Usamos `prose` de Tailwind para formatear el texto automáticamente.
+                return `
+                    <div class="flex items-start gap-4 p-4 bg-gray-700/50 rounded-lg">
+                        <div class="flex-shrink-0 bg-indigo-600 h-8 w-8 rounded-full flex items-center justify-center font-extrabold text-white text-sm">${index + 1}</div>
+                        <div class="flex-grow prose prose-invert max-w-none prose-p:text-gray-300">
+                            ${clue.text ? `<p>${clue.text}</p>` : ''}
+                            ${contentHTML}
+                        </div>
+                    </div>`;
+            }).join('');
+
+            let ctaOrSolutionHTML = '';
+            if (game.isSolved) {
+                ctaOrSolutionHTML = `
+                <div class="mt-6 border-t-2 border-green-500 pt-6 space-y-4">
+                     <h3 class="text-2xl font-bold text-green-400">Solución Final</h3>
+                     <div class="bg-green-900/50 border border-green-500 rounded-lg p-6 text-center">
+                        <p class="text-4xl font-extrabold text-white">${game.solution}</p>
+                        ${game.winner ? `<p class="text-lg text-yellow-400 mt-2">¡Adivinado por <strong>${game.winner}</strong>!</p>` : ''}
+                     </div>
+                     <div class="prose prose-invert max-w-none prose-p:text-gray-300 prose-headings:text-white prose-headings:text-xl">
+                        <h4>Explicación</h4>
+                        ${game.explanation ? `<p>${game.explanation.replace(/\n/g, '</p><p>')}</p>` : '<p>No se proporcionó una explicación.</p>'}
+                     </div>
+                </div>`;
+            } else if (game.googleFormLink) {
+                 ctaOrSolutionHTML = `
+                 <div class="mt-8 text-center">
+                    <a href="${game.googleFormLink}" target="_blank" rel="noopener noreferrer" class="inline-block bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-8 rounded-lg shadow-lg transition-transform transform hover:scale-105">
+                        ¿Tienes la solución? ¡Adivina aquí!
+                    </a>
+                 </div>`;
+            }
+
+            dom.modalTitle.textContent = game.title;
+            dom.modalContent.innerHTML = `<div class="space-y-4">${cluesHTML}</div>${ctaOrSolutionHTML}`;
+        }
+        
+        function openModalWithGame(game) {
+            renderModalContent(game);
+            dom.modal.classList.add('active');
+        }
+        
+        function closeModal() {
+            dom.modal.classList.remove('active');
+            dom.modalTitle.textContent = '';
+            dom.modalContent.innerHTML = '';
+        }
+
+        async function loadGames() {
+            try {
+                // Añadimos un 'cache buster' para asegurarnos de que siempre cargamos la versión más reciente del índice.
+                const response = await fetch(`${GAMES_INDEX_PATH}?v=${Date.now()}`);
+                if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+                const gameFiles = await response.json();
+
+                const gamePromises = gameFiles.map(file => fetch(`games/${file}?v=${Date.now()}`).then(res => res.json()));
+                const games = await Promise.all(gamePromises);
+                
+                dom.enCursoContainer.innerHTML = '';
+                dom.archivoContainer.innerHTML = '';
+
+                // Ordenamos por fecha de actualización, los más recientes primero.
+                games.sort((a, b) => new Date(b.lastUpdated) - new Date(a.lastUpdated));
+
+                let gamesFound = false;
+                games.forEach(game => {
+                    gamesFound = true;
+                    const card = renderSummaryCard(game);
+                    if (game.isSolved) {
+                        dom.archivoContainer.appendChild(card);
+                    } else {
+                        dom.enCursoContainer.appendChild(card);
+                    }
+                });
+
+                if (!gamesFound) {
+                     dom.enCursoContainer.innerHTML = `<p class="text-center text-gray-400 col-span-full">Aún no hay misterios en curso. ¡Vuelve pronto!</p>`;
+                }
+
+            } catch (error) {
+                console.error("Error al cargar los juegos:", error);
+                dom.enCursoContainer.innerHTML = `<p class="text-center text-red-500 col-span-full">Error al cargar los juegos. Revisa la consola (F12) y asegúrate de que el archivo 'games/index.json' existe y es correcto.</p>`;
+            }
+        }
+        
+        // --- INICIALIZACIÓN ---
+        dom.tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                dom.tabs.forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+                dom.tabContents.forEach(c => c.classList.remove('active'));
+                document.getElementById(tab.dataset.tab).classList.add('active');
+            });
+        });
+        
+        dom.modalCloseBtn.addEventListener('click', closeModal);
+        dom.modal.addEventListener('click', (e) => {
+            if (e.target === dom.modal) closeModal();
+        });
+        document.addEventListener('keydown', (e) => {
+            if (e.key === "Escape" && dom.modal.classList.contains('active')) closeModal();
+        });
+
+        loadGames();
+    </script>
+</body>
+</html>
