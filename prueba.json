@@ -1,0 +1,18 @@
+{
+  "title": "Prueba",
+  "googleFormLink": "https://docs.google.com/forms/d/e/1FAIpQLScuv_ObhtkKRDHFPwmN0JbPC8iGu6QfzHF9nYUca1gsKlZ1Bw",
+  "clues": [
+    {
+      "type": "text",
+      "content": "Es una prueba.",
+      "text": "Literalmente."
+    }
+  ],
+  "isSolved": false,
+  "solution": "SOLUCIÓÓÓÓÓN",
+  "winner": "@aia",
+  "explanation": "Pues eso, que esa es la solución",
+  "notes": "Notaaaaaas.",
+  "id": "game-1750198499614",
+  "lastUpdated": "2025-06-17T22:17:44.079Z"
+}
