@@ -1,0 +1,28 @@
+{
+  "title": "Prueba 0",
+  "googleFormLink": "https://docs.google.com/forms/d/e/1FAIpQLScuv_ObhtkKRDHFPwmN0JbPC8iGu6QfzHF9nYUca1gsKlZ1Bw",
+  "clues": [
+    {
+      "type": "text",
+      "content": "Es una prueba.",
+      "text": "Literalmente."
+    },
+    {
+      "type": "text",
+      "content": "Hola.",
+      "text": "Pues eso."
+    },
+    {
+      "type": "text",
+      "content": "Ya está.",
+      "text": "Fin."
+    }
+  ],
+  "isSolved": true,
+  "solution": "SOLUCIÓÓÓÓÓN",
+  "winner": "@aia",
+  "explanation": "Pues eso, que esa es la solución",
+  "notes": "Notaaaaaas.",
+  "id": "game-1750198499614",
+  "lastUpdated": "2025-06-18T21:52:09.582Z"
+}
