@@ -40,28 +40,55 @@
             <div id="en-curso" class="tab-content active grid grid-cols-1 md:grid-cols-2 gap-6"></div>
             <div id="archivo" class="tab-content grid grid-cols-1 md:grid-cols-2 gap-6"></div>
             
-            <!-- Contenido de la pestaña "Sobre el proyecto" -->
+            <!-- Contenido de la pestaña "Sobre el proyecto" (REDiseñado) -->
             <div id="sobre" class="tab-content">
-                <div class="bg-gray-800 rounded-xl shadow-lg p-6 md:p-8 space-y-6 fade-in">
-                    <div class="prose prose-invert max-w-none prose-p:text-gray-300 prose-headings:text-white">
-                        <h2>¿Qué es "La Parte por el Todo"?</h2>
-                        <p>Este es un pequeño proyecto de entretenimiento inspirado en el famoso concurso "Saber y Ganar". El objetivo es adivinar "el todo" (una persona, lugar, película, etc.) a partir de pequeñas "partes" que se revelan semanalmente.</p>
-                        <h3>¿Cómo se juega?</h3>
-                        <ol>
-                            <li>Visita la pestaña <strong>Misterios en Curso</strong> para ver los juegos activos.</li>
-                            <li>Haz clic en un misterio para ver todas sus pistas.</li>
-                            <li>Cuando creas tener la solución, ¡usa el formulario para enviarla!</li>
-                            <li>Una vez resuelto, el juego pasará al <strong>Archivo de Soluciones</strong>.</li>
-                        </ol>
+                <div class="space-y-8 fade-in">
+                    <!-- Card: Qué es -->
+                    <div class="bg-gray-800 rounded-xl shadow-lg p-8">
+                        <h2 class="text-3xl font-bold text-indigo-400 mb-4">¿Qué es "La Parte por el Todo"?</h2>
+                        <p class="text-gray-300 leading-relaxed">
+                            Este es un pequeño proyecto de entretenimiento inspirado en el famoso concurso "Saber y Ganar". El objetivo es adivinar "el todo" —que puede ser una persona, un lugar, una película, una canción o cualquier cosa imaginable— a partir de pequeñas pistas o "partes" que se irán revelando semanalmente. Es un reto a la paciencia, la deducción y la cultura general.
+                        </p>
                     </div>
-                    <div class="border-t border-gray-700 pt-6">
-                         <h3 class="text-xl font-bold text-white mb-4">Sígueme y contacta</h3>
-                         <div class="flex flex-col gap-4">
-                             <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 bg-gray-700 hover:bg-indigo-600 transition-colors p-3 rounded-lg w-full justify-center">
-                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16"><path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.917 3.917 0 0 0-1.417.923A3.927 3.927 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.916 3.916 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.926 3.926 0 0 0-.923-1.417A3.917 3.917 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0h.003zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599.28.28.453.546.598.92.11.282.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.47 2.47 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.478 2.478 0 0 1-.92-.598 2.48 2.48 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.231 0-2.136.008-2.388.046-3.231.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92.28-.28.546-.453.92-.598.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045v.002zm4.988 1.884a1.161 1.161 0 1 0 0 2.322 1.161 1.161 0 0 0 0-2.322zM8 4.202a3.79 3.79 0 1 0 0 7.58 3.79 3.79 0 0 0 0-7.58zm0 1.441a2.35 2.35 0 1 1 0 4.7 2.35 2.35 0 0 1 0-4.7z"/></svg>
-                                 <span>Instagram</span>
-                             </a>
-                         </div>
+
+                    <div class="grid md:grid-cols-5 gap-8">
+                        <!-- Card: Cómo se juega -->
+                        <div class="md:col-span-3 bg-gray-800 rounded-xl shadow-lg p-8">
+                            <h3 class="text-2xl font-bold text-indigo-400 mb-6">¿Cómo se juega?</h3>
+                            <ol class="space-y-5">
+                                <li class="flex">
+                                    <div class="flex-shrink-0 bg-indigo-600 rounded-full text-white font-bold w-8 h-8 flex items-center justify-center mr-4">1</div>
+                                    <div class="pt-1">Visita la pestaña <strong>Misterios en Curso</strong> para ver los juegos activos.</div>
+                                </li>
+                                <li class="flex">
+                                    <div class="flex-shrink-0 bg-indigo-600 rounded-full text-white font-bold w-8 h-8 flex items-center justify-center mr-4">2</div>
+                                    <div class="pt-1">Haz clic en un misterio para estudiar todas sus pistas.</div>
+                                </li>
+                                <li class="flex">
+                                    <div class="flex-shrink-0 bg-indigo-600 rounded-full text-white font-bold w-8 h-8 flex items-center justify-center mr-4">3</div>
+                                    <div class="pt-1">Cuando creas tener la solución, ¡usa el formulario del juego para enviarla!</div>
+                                </li>
+                                <li class="flex">
+                                    <div class="flex-shrink-0 bg-indigo-600 rounded-full text-white font-bold w-8 h-8 flex items-center justify-center mr-4">4</div>
+                                    <div class="pt-1">Una vez resuelto, el juego pasará al <strong>Archivo de Soluciones</strong> con su explicación.</div>
+                                </li>
+                            </ol>
+                        </div>
+                        <!-- Card: Contacto -->
+                        <div class="md:col-span-2 bg-gray-800 rounded-xl shadow-lg p-8 flex flex-col">
+                             <h3 class="text-2xl font-bold text-indigo-400 mb-6">Contacto</h3>
+                             <div class="space-y-4 flex-grow flex flex-col justify-center">
+                                <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" class="group flex items-center gap-4 bg-gray-700/50 hover:bg-gray-700 p-4 rounded-lg transition-all">
+                                     <div class="flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center bg-gradient-to-br from-purple-600 via-pink-600 to-yellow-500">
+                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="text-white" viewBox="0 0 16 16"><path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.917 3.917 0 0 0-1.417.923A3.927 3.927 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.916 3.916 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.926 3.926 0 0 0-.923-1.417A3.917 3.917 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0h.003zM8 4a4 4 0 1 1 0 8 4 4 0 0 1 0-8zm0 1.442a2.558 2.558 0 1 0 0 5.116 2.558 2.558 0 0 0 0-5.116z"/></svg>
+                                     </div>
+                                     <div>
+                                        <div class="font-bold text-white">Instagram</div>
+                                        <div class="text-sm text-gray-400 group-hover:text-gray-200 transition">Sigue el juego</div>
+                                     </div>
+                                 </a>
+                             </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -69,7 +96,6 @@
     </div>
 
     <!-- Estructura del Modal (Ventana Emergente) -->
-    <!-- FIX: Removed `flex` class. It should only be applied by JS via the `.active` class rule -->
     <div id="game-modal" class="modal fixed inset-0 bg-black bg-opacity-80 items-center justify-center p-4 z-50">
         <div class="bg-gray-800 rounded-2xl shadow-2xl w-full max-w-2xl max-h-[90vh] flex flex-col">
             <header class="flex-shrink-0 p-4 border-b border-gray-700 flex justify-between items-center">
@@ -127,7 +153,6 @@
                     case 'audio': contentHTML = `<audio controls src="${clue.content}" class="my-2 w-full">Audio no soportado.</audio>`; break;
                     case 'video': contentHTML = `<video controls src="${clue.content}" class="my-2 rounded-lg w-full">Vídeo no soportado.</video>`; break;
                 }
-                // Usamos `prose` de Tailwind para formatear el texto automáticamente.
                 return `
                     <div class="flex items-start gap-4 p-4 bg-gray-700/50 rounded-lg">
                         <div class="flex-shrink-0 bg-indigo-600 h-8 w-8 rounded-full flex items-center justify-center font-extrabold text-white text-sm">${index + 1}</div>
@@ -202,7 +227,7 @@
 
                 let gamesFound = false;
                 games.forEach(game => {
-                    if (game && game.title) { // Basic validation
+                    if (game && game.title) { 
                         gamesFound = true;
                         const card = renderSummaryCard(game);
                         if (game.isSolved) {
