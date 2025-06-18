@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>La Parte Por El Todo</title>
+    <title>La Parte por el Todo</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
     <style>
@@ -69,7 +69,8 @@
     </div>
 
     <!-- Estructura del Modal (Ventana Emergente) -->
-    <div id="game-modal" class="modal fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center p-4 z-50">
+    <!-- FIX: Removed `flex` class. It should only be applied by JS via the `.active` class rule -->
+    <div id="game-modal" class="modal fixed inset-0 bg-black bg-opacity-80 items-center justify-center p-4 z-50">
         <div class="bg-gray-800 rounded-2xl shadow-2xl w-full max-w-2xl max-h-[90vh] flex flex-col">
             <header class="flex-shrink-0 p-4 border-b border-gray-700 flex justify-between items-center">
                 <h2 id="modal-title" class="text-2xl font-bold text-white"></h2>
@@ -126,6 +127,7 @@
                     case 'audio': contentHTML = `<audio controls src="${clue.content}" class="my-2 w-full">Audio no soportado.</audio>`; break;
                     case 'video': contentHTML = `<video controls src="${clue.content}" class="my-2 rounded-lg w-full">Vídeo no soportado.</video>`; break;
                 }
+                // Usamos `prose` de Tailwind para formatear el texto automáticamente.
                 return `
                     <div class="flex items-start gap-4 p-4 bg-gray-700/50 rounded-lg">
                         <div class="flex-shrink-0 bg-indigo-600 h-8 w-8 rounded-full flex items-center justify-center font-extrabold text-white text-sm">${index + 1}</div>
@@ -138,7 +140,6 @@
 
             let ctaOrSolutionHTML = '';
             if (game.isSolved) {
-                // FIX: Replaced faulty paragraph generation with a version that uses <br> for newlines, which is valid HTML.
                 const explanationHTML = game.explanation 
                     ? `<p>${game.explanation.replace(/\n/g, '<br>')}</p>` 
                     : '<p>No se proporcionó una explicación.</p>';
