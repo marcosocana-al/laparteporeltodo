@@ -15,7 +15,6 @@
         .tab-button.active { background-color: #4f46e5; color: #ffffff; }
         .modal { display: none; }
         .modal.active { display: flex; }
-        /* Mejora para el scroll del modal en navegadores webkit */
         .modal-content-scroll::-webkit-scrollbar { width: 8px; }
         .modal-content-scroll::-webkit-scrollbar-track { background: #1f2937; }
         .modal-content-scroll::-webkit-scrollbar-thumb { background: #4f46e5; border-radius: 4px; }
@@ -28,7 +27,6 @@
             <p class="mt-2 text-lg text-gray-400">Un juego de misterios semanales.</p>
         </header>
 
-        <!-- Navegación por Pestañas -->
         <nav class="flex justify-center border-b border-gray-700 mb-8">
             <button data-tab="en-curso" class="tab-button text-gray-300 hover:bg-gray-700/50 font-semibold py-3 px-6 transition active">Misterios en Curso</button>
             <button data-tab="archivo" class="tab-button text-gray-300 hover:bg-gray-700/50 font-semibold py-3 px-6 transition">Archivo de Soluciones</button>
@@ -36,56 +34,31 @@
         </nav>
 
         <main>
-            <!-- Contenedores para las tarjetas de los juegos -->
-            <div id="en-curso" class="tab-content active grid grid-cols-1 md:grid-cols-2 gap-6"></div>
-            <div id="archivo" class="tab-content grid grid-cols-1 md:grid-cols-2 gap-6"></div>
+            <div id="en-curso" class="tab-content active grid grid-cols-1 md:grid-cols-2 gap-6 min-h-[100px]"></div>
+            <div id="archivo" class="tab-content grid grid-cols-1 md:grid-cols-2 gap-6 min-h-[100px]"></div>
             
-            <!-- Contenido de la pestaña "Sobre el proyecto" (REDiseñado) -->
             <div id="sobre" class="tab-content">
                 <div class="space-y-8 fade-in">
-                    <!-- Card: Qué es -->
                     <div class="bg-gray-800 rounded-xl shadow-lg p-8">
                         <h2 class="text-3xl font-bold text-indigo-400 mb-4">¿Qué es "La Parte por el Todo"?</h2>
-                        <p class="text-gray-300 leading-relaxed">
-                            Este es un pequeño proyecto de entretenimiento inspirado en el famoso concurso "Saber y Ganar". El objetivo es adivinar "el todo" —que puede ser una persona, un lugar, una película, una canción o cualquier cosa imaginable— a partir de pequeñas pistas o "partes" que se irán revelando semanalmente. Es un reto a la paciencia, la deducción y la cultura general.
-                        </p>
+                        <p class="text-gray-300 leading-relaxed">Este es un pequeño proyecto de entretenimiento inspirado en el famoso concurso "Saber y Ganar". El objetivo es adivinar "el todo" —que puede ser una persona, un lugar, una película, una canción o cualquier cosa imaginable— a partir de pequeñas pistas o "partes" que se irán revelando semanalmente. Es un reto a la paciencia, la deducción y la cultura general.</p>
                     </div>
-
                     <div class="grid md:grid-cols-5 gap-8">
-                        <!-- Card: Cómo se juega -->
                         <div class="md:col-span-3 bg-gray-800 rounded-xl shadow-lg p-8">
                             <h3 class="text-2xl font-bold text-indigo-400 mb-6">¿Cómo se juega?</h3>
                             <ol class="space-y-5">
-                                <li class="flex">
-                                    <div class="flex-shrink-0 bg-indigo-600 rounded-full text-white font-bold w-8 h-8 flex items-center justify-center mr-4">1</div>
-                                    <div class="pt-1">Visita la pestaña <strong>Misterios en Curso</strong> para ver los juegos activos.</div>
-                                </li>
-                                <li class="flex">
-                                    <div class="flex-shrink-0 bg-indigo-600 rounded-full text-white font-bold w-8 h-8 flex items-center justify-center mr-4">2</div>
-                                    <div class="pt-1">Haz clic en un misterio para estudiar todas sus pistas.</div>
-                                </li>
-                                <li class="flex">
-                                    <div class="flex-shrink-0 bg-indigo-600 rounded-full text-white font-bold w-8 h-8 flex items-center justify-center mr-4">3</div>
-                                    <div class="pt-1">Cuando creas tener la solución, ¡usa el formulario del juego para enviarla!</div>
-                                </li>
-                                <li class="flex">
-                                    <div class="flex-shrink-0 bg-indigo-600 rounded-full text-white font-bold w-8 h-8 flex items-center justify-center mr-4">4</div>
-                                    <div class="pt-1">Una vez resuelto, el juego pasará al <strong>Archivo de Soluciones</strong> con su explicación.</div>
-                                </li>
+                                <li class="flex"><div class="flex-shrink-0 bg-indigo-600 rounded-full text-white font-bold w-8 h-8 flex items-center justify-center mr-4">1</div><div class="pt-1">Visita la pestaña <strong>Misterios en Curso</strong> para ver los juegos activos.</div></li>
+                                <li class="flex"><div class="flex-shrink-0 bg-indigo-600 rounded-full text-white font-bold w-8 h-8 flex items-center justify-center mr-4">2</div><div class="pt-1">Haz clic en un misterio para estudiar todas sus pistas.</div></li>
+                                <li class="flex"><div class="flex-shrink-0 bg-indigo-600 rounded-full text-white font-bold w-8 h-8 flex items-center justify-center mr-4">3</div><div class="pt-1">Cuando creas tener la solución, ¡usa el formulario del juego para enviarla!</div></li>
+                                <li class="flex"><div class="flex-shrink-0 bg-indigo-600 rounded-full text-white font-bold w-8 h-8 flex items-center justify-center mr-4">4</div><div class="pt-1">Una vez resuelto, el juego pasará al <strong>Archivo de Soluciones</strong> con su explicación.</div></li>
                             </ol>
                         </div>
-                        <!-- Card: Contacto -->
                         <div class="md:col-span-2 bg-gray-800 rounded-xl shadow-lg p-8 flex flex-col">
                              <h3 class="text-2xl font-bold text-indigo-400 mb-6">Contacto</h3>
                              <div class="space-y-4 flex-grow flex flex-col justify-center">
                                 <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" class="group flex items-center gap-4 bg-gray-700/50 hover:bg-gray-700 p-4 rounded-lg transition-all">
-                                     <div class="flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center bg-gradient-to-br from-purple-600 via-pink-600 to-yellow-500">
-                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="text-white" viewBox="0 0 16 16"><path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.917 3.917 0 0 0-1.417.923A3.927 3.927 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.916 3.916 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.926 3.926 0 0 0-.923-1.417A3.917 3.917 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0h.003zM8 4a4 4 0 1 1 0 8 4 4 0 0 1 0-8zm0 1.442a2.558 2.558 0 1 0 0 5.116 2.558 2.558 0 0 0 0-5.116z"/></svg>
-                                     </div>
-                                     <div>
-                                        <div class="font-bold text-white">Instagram</div>
-                                        <div class="text-sm text-gray-400 group-hover:text-gray-200 transition">Sigue el juego</div>
-                                     </div>
+                                     <div class="flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center bg-gradient-to-br from-purple-600 via-pink-600 to-yellow-500"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="text-white" viewBox="0 0 16 16"><path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.917 3.917 0 0 0-1.417.923A3.927 3.927 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.916 3.916 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.926 3.926 0 0 0-.923-1.417A3.917 3.917 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0h.003zM8 4a4 4 0 1 1 0 8 4 4 0 0 1 0-8zm0 1.442a2.558 2.558 0 1 0 0 5.116 2.558 2.558 0 0 0 0-5.116z"/></svg></div>
+                                     <div><div class="font-bold text-white">Instagram</div><div class="text-sm text-gray-400 group-hover:text-gray-200 transition">Sigue el juego</div></div>
                                  </a>
                              </div>
                         </div>
@@ -95,7 +68,7 @@
         </main>
     </div>
 
-    <!-- Estructura del Modal (Ventana Emergente) -->
+    <!-- Modal Structure -->
     <div id="game-modal" class="modal fixed inset-0 bg-black bg-opacity-80 items-center justify-center p-4 z-50">
         <div class="bg-gray-800 rounded-2xl shadow-2xl w-full max-w-2xl max-h-[90vh] flex flex-col">
             <header class="flex-shrink-0 p-4 border-b border-gray-700 flex justify-between items-center">
@@ -126,21 +99,14 @@
                 : `<span class="bg-yellow-500 text-gray-900 text-xs font-semibold px-2 py-1 rounded-full">En curso</span>`;
             
             const lastUpdated = new Date(game.lastUpdated).toLocaleDateString('es-ES', { day: 'numeric', month: 'short', year: 'numeric' });
-
             const card = document.createElement('div');
             card.className = 'bg-gray-800/80 hover:bg-gray-800 transition-colors cursor-pointer rounded-xl shadow-lg p-5 flex flex-col justify-between fade-in';
             card.innerHTML = `
                 <div>
-                    <div class="flex justify-between items-start mb-2">
-                        <h3 class="text-xl font-bold text-white pr-2">${game.title || 'Misterio sin título'}</h3>
-                        ${statusPill}
-                    </div>
+                    <div class="flex justify-between items-start mb-2"><h3 class="text-xl font-bold text-white pr-2">${game.title || 'Misterio sin título'}</h3>${statusPill}</div>
                     <p class="text-sm text-gray-400">Pistas publicadas: ${game.clues?.length || 0}</p>
                 </div>
-                <div class="mt-4 border-t border-gray-700 pt-3 text-right">
-                    <p class="text-xs text-gray-500">Actualizado: ${lastUpdated}</p>
-                </div>`;
-            
+                <div class="mt-4 border-t border-gray-700 pt-3 text-right"><p class="text-xs text-gray-500">Actualizado: ${lastUpdated}</p></div>`;
             card.addEventListener('click', () => openModalWithGame(game));
             return card;
         }
@@ -148,27 +114,23 @@
         function renderModalContent(game) {
             const cluesHTML = (game.clues || []).map((clue, index) => {
                 let contentHTML = '';
-                switch (clue.type) {
-                    case 'image': contentHTML = `<img src="${clue.content}" alt="Pista" class="my-2 rounded-lg w-full h-auto object-cover max-h-96">`; break;
-                    case 'audio': contentHTML = `<audio controls src="${clue.content}" class="my-2 w-full">Audio no soportado.</audio>`; break;
-                    case 'video': contentHTML = `<video controls src="${clue.content}" class="my-2 rounded-lg w-full">Vídeo no soportado.</video>`; break;
+                if(clue.type && clue.content) {
+                    switch (clue.type) {
+                        case 'image': contentHTML = `<img src="${clue.content}" alt="Pista" class="my-2 rounded-lg w-full h-auto object-cover max-h-96">`; break;
+                        case 'audio': contentHTML = `<audio controls src="${clue.content}" class="my-2 w-full">Audio no soportado.</audio>`; break;
+                        case 'video': contentHTML = `<video controls src="${clue.content}" class="my-2 rounded-lg w-full">Vídeo no soportado.</video>`; break;
+                    }
                 }
                 return `
                     <div class="flex items-start gap-4 p-4 bg-gray-700/50 rounded-lg">
                         <div class="flex-shrink-0 bg-indigo-600 h-8 w-8 rounded-full flex items-center justify-center font-extrabold text-white text-sm">${index + 1}</div>
-                        <div class="flex-grow prose prose-invert max-w-none prose-p:text-gray-300">
-                            ${clue.text ? `<p>${clue.text}</p>` : ''}
-                            ${contentHTML}
-                        </div>
+                        <div class="flex-grow prose prose-invert max-w-none prose-p:text-gray-300">${clue.text ? `<p>${clue.text}</p>` : ''}${contentHTML}</div>
                     </div>`;
             }).join('');
 
             let ctaOrSolutionHTML = '';
             if (game.isSolved) {
-                const explanationHTML = game.explanation 
-                    ? `<p>${game.explanation.replace(/\n/g, '<br>')}</p>` 
-                    : '<p>No se proporcionó una explicación.</p>';
-
+                const explanationHTML = game.explanation ? `<p>${game.explanation.replace(/\n/g, '<br>')}</p>` : '<p>No se proporcionó una explicación.</p>';
                 ctaOrSolutionHTML = `
                 <div class="mt-6 border-t-2 border-green-500 pt-6 space-y-4">
                      <h3 class="text-2xl font-bold text-green-400">Solución Final</h3>
@@ -176,97 +138,95 @@
                         <p class="text-4xl font-extrabold text-white">${game.solution || 'N/A'}</p>
                         ${game.winner ? `<p class="text-lg text-yellow-400 mt-2">¡Adivinado por <strong>${game.winner}</strong>!</p>` : ''}
                      </div>
-                     <div class="prose prose-invert max-w-none prose-p:text-gray-300 prose-headings:text-white prose-headings:text-xl">
-                        <h4>Explicación</h4>
-                        ${explanationHTML}
-                     </div>
+                     <div class="prose prose-invert max-w-none prose-p:text-gray-300 prose-headings:text-white prose-headings:text-xl"><h4>Explicación</h4>${explanationHTML}</div>
                 </div>`;
             } else if (game.googleFormLink) {
-                 ctaOrSolutionHTML = `
-                 <div class="mt-8 text-center">
-                    <a href="${game.googleFormLink}" target="_blank" rel="noopener noreferrer" class="inline-block bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-8 rounded-lg shadow-lg transition-transform transform hover:scale-105">
-                        ¿Tienes la solución? ¡Adivina aquí!
-                    </a>
-                 </div>`;
+                 ctaOrSolutionHTML = `<div class="mt-8 text-center"><a href="${game.googleFormLink}" target="_blank" rel="noopener noreferrer" class="inline-block bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-8 rounded-lg shadow-lg transition-transform transform hover:scale-105">¿Tienes la solución? ¡Adivina aquí!</a></div>`;
             }
-
             dom.modalTitle.textContent = game.title || 'Misterio';
             dom.modalContent.innerHTML = `<div class="space-y-4">${cluesHTML}</div>${ctaOrSolutionHTML}`;
         }
         
         function openModalWithGame(game) {
-            try {
-                renderModalContent(game);
-                dom.modal.classList.add('active');
-            } catch (error) {
-                console.error("Error al renderizar el contenido del modal:", error);
-                alert("Hubo un error al intentar mostrar este juego. Revisa la consola para más detalles.");
-            }
+            try { renderModalContent(game); dom.modal.classList.add('active'); } 
+            catch (error) { console.error("Error al renderizar el contenido del modal:", error); alert("Hubo un error al intentar mostrar este juego."); }
         }
         
-        function closeModal() {
-            dom.modal.classList.remove('active');
-            dom.modalTitle.textContent = '';
-            dom.modalContent.innerHTML = '';
-        }
+        function closeModal() { dom.modal.classList.remove('active'); dom.modalTitle.textContent = ''; dom.modalContent.innerHTML = ''; }
 
         async function loadGames() {
+            const loadingHTML = '<p class="text-center text-gray-400 col-span-full">Cargando misterios...</p>';
+            dom.enCursoContainer.innerHTML = loadingHTML;
+            dom.archivoContainer.innerHTML = loadingHTML;
+
             try {
                 const response = await fetch(`${GAMES_INDEX_PATH}?v=${Date.now()}`);
-                if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+                if (!response.ok) throw new Error(`El archivo de índice no se encuentra en ${GAMES_INDEX_PATH}`);
                 const gameFiles = await response.json();
                 if (!Array.isArray(gameFiles)) throw new Error("El índice de juegos no es un array válido.");
 
-                const gamePromises = gameFiles.map(file => fetch(`games/${file}?v=${Date.now()}`).then(res => res.json()));
-                const games = await Promise.all(gamePromises);
-                
+                const gamePromises = gameFiles.map(async (file) => {
+                    try {
+                        const res = await fetch(`games/${file}?v=${Date.now()}`);
+                        if (!res.ok) throw new Error(`No se pudo cargar ${file}`);
+                        return await res.json();
+                    } catch (error) {
+                        console.error(`Error procesando el archivo de juego ${file}:`, error);
+                        return null; // Devuelve null si un juego falla al cargar
+                    }
+                });
+
+                const games = (await Promise.all(gamePromises)).filter(Boolean); // Filtra los nulos
+
                 dom.enCursoContainer.innerHTML = '';
                 dom.archivoContainer.innerHTML = '';
-
                 games.sort((a, b) => new Date(b.lastUpdated) - new Date(a.lastUpdated));
 
-                let gamesFound = false;
+                let enCursoCount = 0;
+                let archivoCount = 0;
                 games.forEach(game => {
-                    if (game && game.title) { 
-                        gamesFound = true;
+                    if (game && game.title) {
                         const card = renderSummaryCard(game);
                         if (game.isSolved) {
                             dom.archivoContainer.appendChild(card);
+                            archivoCount++;
                         } else {
                             dom.enCursoContainer.appendChild(card);
+                            enCursoCount++;
                         }
                     }
                 });
 
-                if (!gamesFound) {
-                     dom.enCursoContainer.innerHTML = `<p class="text-center text-gray-400 col-span-full">Aún no hay misterios en curso. ¡Vuelve pronto!</p>`;
-                }
+                if (enCursoCount === 0) dom.enCursoContainer.innerHTML = '<p class="text-center text-gray-400 col-span-full">Aún no hay misterios en curso. ¡Vuelve pronto!</p>';
+                if (archivoCount === 0) dom.archivoContainer.innerHTML = '<p class="text-center text-gray-400 col-span-full">Aún no hay misterios resueltos.</p>';
 
             } catch (error) {
-                console.error("Error al cargar los juegos:", error);
-                dom.enCursoContainer.innerHTML = `<p class="text-center text-red-500 col-span-full">Error al cargar los juegos. Revisa la consola (F12) y asegúrate de que el archivo 'games/index.json' existe y es correcto.</p>`;
+                console.error("Error al cargar el índice de juegos:", error);
+                const errorHTML = `<p class="text-center text-red-500 col-span-full">Error fatal al cargar los juegos. Revisa la consola (F12) para más detalles.</p>`;
+                dom.enCursoContainer.innerHTML = errorHTML;
+                dom.archivoContainer.innerHTML = '';
             }
         }
         
         // --- INICIALIZACIÓN ---
-        dom.tabs.forEach(tab => {
-            tab.addEventListener('click', () => {
-                dom.tabs.forEach(t => t.classList.remove('active'));
-                tab.classList.add('active');
-                dom.tabContents.forEach(c => c.classList.remove('active'));
-                document.getElementById(tab.dataset.tab).classList.add('active');
+        function init() {
+            dom.tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    dom.tabs.forEach(t => t.classList.remove('active'));
+                    tab.classList.add('active');
+                    dom.tabContents.forEach(c => c.classList.remove('active'));
+                    document.getElementById(tab.dataset.tab).classList.add('active');
+                });
             });
-        });
-        
-        dom.modalCloseBtn.addEventListener('click', closeModal);
-        dom.modal.addEventListener('click', (e) => {
-            if (e.target === dom.modal) closeModal();
-        });
-        document.addEventListener('keydown', (e) => {
-            if (e.key === "Escape" && dom.modal.classList.contains('active')) closeModal();
-        });
+            
+            dom.modalCloseBtn.addEventListener('click', closeModal);
+            dom.modal.addEventListener('click', (e) => { if (e.target === dom.modal) closeModal(); });
+            document.addEventListener('keydown', (e) => { if (e.key === "Escape" && dom.modal.classList.contains('active')) closeModal(); });
 
-        loadGames();
+            loadGames();
+        }
+
+        init();
     </script>
 </body>
 </html>
