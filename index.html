@@ -10,9 +10,8 @@
         body { font-family: 'Inter', sans-serif; background-color: #111827; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
         .fade-in { animation: fadeIn 0.6s ease-out forwards; }
-        /* El botón activo se estiliza, pero no controla la visibilidad del contenido */
         .tab-button.active { background-color: #4f46e5; color: #ffffff; }
-        .modal { display: none; } /* El modal se controla con su propia clase .active */
+        .modal { display: none; }
         .modal.active { display: flex; }
         .modal-content-scroll::-webkit-scrollbar { width: 8px; }
         .modal-content-scroll::-webkit-scrollbar-track { background: #1f2937; }
@@ -33,7 +32,7 @@
         </nav>
 
         <main>
-            <!-- Contenedores para las pestañas. Usamos la clase `hidden` de Tailwind para controlar la visibilidad. -->
+            <!-- Contenedores para las pestañas -->
             <div id="en-curso" class="tab-content grid grid-cols-1 md:grid-cols-2 gap-6 min-h-[100px]"></div>
             <div id="archivo" class="tab-content hidden grid grid-cols-1 md:grid-cols-2 gap-6 min-h-[100px]"></div>
             <div id="sobre" class="tab-content hidden">
@@ -92,24 +91,48 @@
         function renderSummaryCard(game) {
             const statusPill = game.isSolved ? `<span class="bg-green-500 text-white text-xs font-semibold px-2 py-1 rounded-full">Resuelto</span>` : `<span class="bg-yellow-500 text-gray-900 text-xs font-semibold px-2 py-1 rounded-full">En curso</span>`;
             const lastUpdated = new Date(game.lastUpdated).toLocaleDateString('es-ES', { day: 'numeric', month: 'short', year: 'numeric' });
+            
+            // **CHANGE**: Add the description HTML only if game.notes exists.
+            const descriptionHTML = game.notes ? `<p class="text-sm text-gray-400 mt-2 italic">${game.notes}</p>` : '';
+
             const card = document.createElement('div');
             card.className = 'bg-gray-800/80 hover:bg-gray-800 transition-colors cursor-pointer rounded-xl shadow-lg p-5 flex flex-col justify-between fade-in';
-            card.innerHTML = `<div><div class="flex justify-between items-start mb-2"><h3 class="text-xl font-bold text-white pr-2">${game.title || 'Misterio sin título'}</h3>${statusPill}</div><p class="text-sm text-gray-400">Pistas publicadas: ${game.clues?.length || 0}</p></div><div class="mt-4 border-t border-gray-700 pt-3 text-right"><p class="text-xs text-gray-500">Actualizado: ${lastUpdated}</p></div>`;
+            card.innerHTML = `
+                <div>
+                    <div class="flex justify-between items-start mb-2"><h3 class="text-xl font-bold text-white pr-2">${game.title || 'Misterio sin título'}</h3>${statusPill}</div>
+                    ${descriptionHTML}
+                    <p class="text-sm text-gray-500 mt-3">Pistas publicadas: ${game.clues?.length || 0}</p>
+                </div>
+                <div class="mt-4 border-t border-gray-700 pt-3 text-right"><p class="text-xs text-gray-500">Actualizado: ${lastUpdated}</p></div>`;
             card.addEventListener('click', () => openModalWithGame(game));
             return card;
         }
 
         function renderModalContent(game) {
+            // **CHANGE**: Reworked this logic to correctly display descriptive text for all clue types.
             const cluesHTML = (game.clues || []).map((clue, index) => {
-                let contentHTML = '';
-                if (clue.type && clue.content) {
+                let mainTextHTML = '';
+                let mediaHTML = '';
+
+                // For 'text' type clues, the main content is in `clue.content`.
+                if (clue.type === 'text') {
+                    mainTextHTML = `<p>${clue.content || ''}</p>`;
+                } 
+                // For other types, the optional description is in `clue.text`.
+                else if (clue.text) {
+                    mainTextHTML = `<p>${clue.text}</p>`;
+                }
+                
+                // Render the media element if it exists.
+                if (clue.type !== 'text' && clue.content) {
                     switch (clue.type) {
-                        case 'image': contentHTML = `<img src="${clue.content}" alt="Pista" class="my-2 rounded-lg w-full h-auto object-cover max-h-96">`; break;
-                        case 'audio': contentHTML = `<audio controls src="${clue.content}" class="my-2 w-full">Audio no soportado.</audio>`; break;
-                        case 'video': contentHTML = `<video controls src="${clue.content}" class="my-2 rounded-lg w-full">Vídeo no soportado.</video>`; break;
+                        case 'image': mediaHTML = `<img src="${clue.content}" alt="Pista" class="mt-2 rounded-lg w-full h-auto object-cover max-h-96">`; break;
+                        case 'audio': mediaHTML = `<audio controls src="${clue.content}" class="mt-2 w-full">Audio no soportado.</audio>`; break;
+                        case 'video': mediaHTML = `<video controls src="${clue.content}" class="mt-2 rounded-lg w-full">Vídeo no soportado.</video>`; break;
                     }
                 }
-                return `<div class="flex items-start gap-4 p-4 bg-gray-700/50 rounded-lg"><div class="flex-shrink-0 bg-indigo-600 h-8 w-8 rounded-full flex items-center justify-center font-extrabold text-white text-sm">${index + 1}</div><div class="flex-grow prose prose-invert max-w-none prose-p:text-gray-300">${clue.text ? `<p>${clue.text}</p>` : ''}${contentHTML}</div></div>`;
+
+                return `<div class="flex items-start gap-4 p-4 bg-gray-700/50 rounded-lg"><div class="flex-shrink-0 bg-indigo-600 h-8 w-8 rounded-full flex items-center justify-center font-extrabold text-white text-sm">${index + 1}</div><div class="flex-grow prose prose-invert max-w-none prose-p:text-gray-300">${mainTextHTML}${mediaHTML}</div></div>`;
             }).join('');
 
             let ctaOrSolutionHTML = '';
@@ -182,26 +205,21 @@
         }
         
         function init() {
-            // Lógica de pestañas robusta
             dom.tabs.forEach(tab => {
                 tab.addEventListener('click', (event) => {
                     const targetId = event.currentTarget.dataset.tab;
-
-                    // Estilar el botón activo
                     dom.tabs.forEach(t => t.classList.remove('active'));
                     event.currentTarget.classList.add('active');
-
-                    // Ocultar TODOS los paneles de contenido
                     dom.tabContents.forEach(contentPanel => {
-                        contentPanel.classList.add('hidden');
+                        if (contentPanel.id === targetId) {
+                            contentPanel.classList.remove('hidden');
+                        } else {
+                            contentPanel.classList.add('hidden');
+                        }
                     });
-
-                    // Mostrar SOLO el panel de contenido objetivo
-                    document.getElementById(targetId).classList.remove('hidden');
                 });
             });
             
-            // Lógica del modal
             dom.modalCloseBtn.addEventListener('click', closeModal);
             dom.modal.addEventListener('click', (e) => { if (e.target === dom.modal) closeModal(); });
             document.addEventListener('keydown', (e) => { if (e.key === "Escape" && dom.modal.classList.contains('active')) closeModal(); });
