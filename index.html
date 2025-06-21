@@ -6,6 +6,8 @@
     <title>La Parte por el Todo</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+    <!-- Librería para generar PDF -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
     <style>
         body { font-family: 'Inter', sans-serif; background-color: #111827; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
@@ -32,7 +34,6 @@
         </nav>
 
         <main>
-            <!-- Contenedores para las pestañas -->
             <div id="en-curso" class="tab-content grid grid-cols-1 md:grid-cols-2 gap-6 min-h-[100px]"></div>
             <div id="archivo" class="tab-content hidden grid grid-cols-1 md:grid-cols-2 gap-6 min-h-[100px]"></div>
             <div id="sobre" class="tab-content hidden">
@@ -45,18 +46,22 @@
                         <div class="md:col-span-3 bg-gray-800 rounded-xl shadow-lg p-8">
                             <h3 class="text-2xl font-bold text-indigo-400 mb-6">¿Cómo se juega?</h3>
                             <ol class="space-y-5">
-                                <li class="flex"><div class="flex-shrink-0 bg-indigo-600 rounded-full text-white font-bold w-8 h-8 flex items-center justify-center mr-4">1</div><div class="pt-1">Visita la pestaña <strong>Misterios en Curso</strong> para ver los juegos activos.</div></li>
-                                <li class="flex"><div class="flex-shrink-0 bg-indigo-600 rounded-full text-white font-bold w-8 h-8 flex items-center justify-center mr-4">2</div><div class="pt-1">Haz clic en un misterio para estudiar todas sus pistas.</div></li>
-                                <li class="flex"><div class="flex-shrink-0 bg-indigo-600 rounded-full text-white font-bold w-8 h-8 flex items-center justify-center mr-4">3</div><div class="pt-1">Cuando creas tener la solución, ¡usa el formulario del juego para enviarla!</div></li>
-                                <li class="flex"><div class="flex-shrink-0 bg-indigo-600 rounded-full text-white font-bold w-8 h-8 flex items-center justify-center mr-4">4</div><div class="pt-1">Una vez resuelto, el juego pasará al <strong>Archivo de Soluciones</strong> con su explicación.</div></li>
+                                <li class="flex"><div class="flex-shrink-0 bg-indigo-600 rounded-full text-white font-bold w-8 h-8 flex items-center justify-center mr-4">1</div><div class="pt-1">Visita la pestaña <strong>Misterios en Curso</strong> o el <strong>Archivo</strong> para elegir un juego.</div></li>
+                                <li class="flex"><div class="flex-shrink-0 bg-indigo-600 rounded-full text-white font-bold w-8 h-8 flex items-center justify-center mr-4">2</div><div class="pt-1">Si está resuelto, puedes elegir entre ver la solución directamente o jugar pista a pista.</div></li>
+                                <li class="flex"><div class="flex-shrink-0 bg-indigo-600 rounded-full text-white font-bold w-8 h-8 flex items-center justify-center mr-4">3</div><div class="pt-1">Cuando creas tener la solución (en un juego en curso), ¡usa el formulario para enviarla!</div></li>
+                                <li class="flex"><div class="flex-shrink-0 bg-indigo-600 rounded-full text-white font-bold w-8 h-8 flex items-center justify-center mr-4">4</div><div class="pt-1">Puedes descargar un resumen de cada misterio en PDF en cualquier momento.</div></li>
                             </ol>
                         </div>
                         <div class="md:col-span-2 bg-gray-800 rounded-xl shadow-lg p-8 flex flex-col">
-                             <h3 class="text-2xl font-bold text-indigo-400 mb-6">Contacto</h3>
+                             <h3 class="text-2xl font-bold text-indigo-400 mb-6">Contacto y Opiniones</h3>
                              <div class="space-y-4 flex-grow flex flex-col justify-center">
-                                <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" class="group flex items-center gap-4 bg-gray-700/50 hover:bg-gray-700 p-4 rounded-lg transition-all">
+                                <a href="#" target="_blank" rel="noopener noreferrer" class="group flex items-center gap-4 bg-gray-700/50 hover:bg-gray-700 p-4 rounded-lg transition-all">
                                      <div class="flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center bg-gradient-to-br from-purple-600 via-pink-600 to-yellow-500"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="text-white" viewBox="0 0 16 16"><path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.917 3.917 0 0 0-1.417.923A3.927 3.927 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.916 3.916 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.926 3.926 0 0 0-.923-1.417A3.917 3.917 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0h.003zM8 4a4 4 0 1 1 0 8 4 4 0 0 1 0-8zm0 1.442a2.558 2.558 0 1 0 0 5.116 2.558 2.558 0 0 0 0-5.116z"/></svg></div>
                                      <div><div class="font-bold text-white">Instagram</div><div class="text-sm text-gray-400 group-hover:text-gray-200 transition">Sigue el juego</div></div>
+                                 </a>
+                                 <a href="#" target="_blank" rel="noopener noreferrer" class="group flex items-center gap-4 bg-gray-700/50 hover:bg-gray-700 p-4 rounded-lg transition-all">
+                                     <div class="flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center bg-blue-500"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="text-white" viewBox="0 0 16 16"><path d="M2 2.5A2.5 2.5 0 0 1 4.5 0h8.75a.75.75 0 0 1 0 1.5H4.5A1 1 0 0 0 3.5 3h10a1 1 0 0 0 1-1 .75.75 0 0 1 1.5 0v1A1.5 1.5 0 0 1 14.5 4h-13A1.5 1.5 0 0 1 0 2.5v-1A1.5 1.5 0 0 1 1.5 0H2z"/><path d="M16 5.5a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 0 5.5v-1A1.5 1.5 0 0 1 1.5 3H2a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1h.5a1.5 1.5 0 0 1 1.5 1.5v1zM1.5 9h13a.5.5 0 0 1 0 1h-13a.5.5 0 0 1 0-1zm0 2.5h13a.5.5 0 0 1 0 1h-13a.5.5 0 0 1 0-1z"/></svg></div>
+                                     <div><div class="font-bold text-white">Dame tu opinión</div><div class="text-sm text-gray-400 group-hover:text-gray-200 transition">Formulario de feedback</div></div>
                                  </a>
                              </div>
                         </div>
@@ -67,140 +72,148 @@
     </div>
 
     <!-- Modal Structure -->
-    <div id="game-modal" class="modal fixed inset-0 bg-black bg-opacity-80 items-center justify-center p-4 z-50">
-        <div class="bg-gray-800 rounded-2xl shadow-2xl w-full max-w-2xl max-h-[90vh] flex flex-col">
-            <header class="flex-shrink-0 p-4 border-b border-gray-700 flex justify-between items-center"><h2 id="modal-title" class="text-2xl font-bold text-white"></h2><button id="modal-close-btn" class="text-gray-400 hover:text-white text-3xl leading-none">&times;</button></header>
-            <div id="modal-content" class="p-6 overflow-y-auto modal-content-scroll"></div>
-        </div>
-    </div>
+    <div id="game-modal" class="modal fixed inset-0 bg-black bg-opacity-80 items-center justify-center p-4 z-50"><div class="bg-gray-800 rounded-2xl shadow-2xl w-full max-w-2xl max-h-[90vh] flex flex-col"><header class="flex-shrink-0 p-4 border-b border-gray-700 flex justify-between items-center"><h2 id="modal-title" class="text-2xl font-bold text-white"></h2><button id="modal-close-btn" class="text-gray-400 hover:text-white text-3xl leading-none">&times;</button></header><div id="modal-content" class="p-6 overflow-y-auto modal-content-scroll"></div></div></div>
 
     <script>
         const dom = {
-            tabs: document.querySelectorAll('.tab-button'),
-            tabContents: document.querySelectorAll('.tab-content'),
-            enCursoContainer: document.getElementById('en-curso'),
-            archivoContainer: document.getElementById('archivo'),
-            modal: document.getElementById('game-modal'),
-            modalTitle: document.getElementById('modal-title'),
-            modalContent: document.getElementById('modal-content'),
-            modalCloseBtn: document.getElementById('modal-close-btn'),
+            tabs: document.querySelectorAll('.tab-button'), tabContents: document.querySelectorAll('.tab-content'), enCursoContainer: document.getElementById('en-curso'), archivoContainer: document.getElementById('archivo'),
+            modal: document.getElementById('game-modal'), modalTitle: document.getElementById('modal-title'), modalContent: document.getElementById('modal-content'), modalCloseBtn: document.getElementById('modal-close-btn'),
         };
 
         const GAMES_INDEX_PATH = 'games/index.json';
 
+        function getVisibleClues(game) {
+            if (!game.clues || game.isSolved) return game.clues || [];
+            const now = new Date();
+            return game.clues.filter(clue => clue.publishDate && new Date(clue.publishDate) <= now);
+        }
+
         function renderSummaryCard(game) {
             const statusPill = game.isSolved ? `<span class="bg-green-500 text-white text-xs font-semibold px-2 py-1 rounded-full">Resuelto</span>` : `<span class="bg-yellow-500 text-gray-900 text-xs font-semibold px-2 py-1 rounded-full">En curso</span>`;
-            const lastUpdated = new Date(game.lastUpdated).toLocaleDateString('es-ES', { day: 'numeric', month: 'short', year: 'numeric' });
-            
-            // **CHANGE**: Add the description HTML only if game.notes exists.
+            const startDate = game.startDate ? new Date(game.startDate).toLocaleDateString('es-ES', { day: 'numeric', month: 'short' }) : '';
+            const endDate = game.endDate ? new Date(game.endDate).toLocaleDateString('es-ES', { day: 'numeric', month: 'short', year: 'numeric' }) : '';
+            const dateText = game.isSolved ? `Del ${startDate} al ${endDate}` : `Iniciado: ${startDate}`;
             const descriptionHTML = game.notes ? `<p class="text-sm text-gray-400 mt-2 italic">${game.notes}</p>` : '';
-
             const card = document.createElement('div');
             card.className = 'bg-gray-800/80 hover:bg-gray-800 transition-colors cursor-pointer rounded-xl shadow-lg p-5 flex flex-col justify-between fade-in';
-            card.innerHTML = `
-                <div>
-                    <div class="flex justify-between items-start mb-2"><h3 class="text-xl font-bold text-white pr-2">${game.title || 'Misterio sin título'}</h3>${statusPill}</div>
-                    ${descriptionHTML}
-                    <p class="text-sm text-gray-500 mt-3">Pistas publicadas: ${game.clues?.length || 0}</p>
-                </div>
-                <div class="mt-4 border-t border-gray-700 pt-3 text-right"><p class="text-xs text-gray-500">Actualizado: ${lastUpdated}</p></div>`;
+            card.innerHTML = `<div><div class="flex justify-between items-start mb-2"><h3 class="text-xl font-bold text-white pr-2">${game.title || 'Misterio sin título'}</h3>${statusPill}</div>${descriptionHTML}<p class="text-sm text-gray-500 mt-3">Pistas publicadas: ${getVisibleClues(game).length}</p></div><div class="mt-4 border-t border-gray-700 pt-3 text-right"><p class="text-xs text-gray-500">${dateText}</p></div>`;
             card.addEventListener('click', () => openModalWithGame(game));
             return card;
         }
 
-        function renderModalContent(game) {
-            // **CHANGE**: Reworked this logic to correctly display descriptive text for all clue types.
-            const cluesHTML = (game.clues || []).map((clue, index) => {
-                let mainTextHTML = '';
-                let mediaHTML = '';
-
-                // For 'text' type clues, the main content is in `clue.content`.
-                if (clue.type === 'text') {
-                    mainTextHTML = `<p>${clue.content || ''}</p>`;
-                } 
-                // For other types, the optional description is in `clue.text`.
-                else if (clue.text) {
-                    mainTextHTML = `<p>${clue.text}</p>`;
+        function renderClue(clue, index) {
+            let mainTextHTML = '', mediaHTML = '';
+            if (clue.type === 'text') { mainTextHTML = `<p>${clue.content || ''}</p>`; } 
+            else if (clue.text) { mainTextHTML = `<p>${clue.text}</p>`; }
+            if (clue.type !== 'text' && clue.content) {
+                switch (clue.type) {
+                    case 'image': mediaHTML = `<img src="${clue.content}" alt="Pista" class="mt-2 rounded-lg w-full h-auto object-cover max-h-96">`; break;
+                    case 'audio': mediaHTML = `<audio controls src="${clue.content}" class="mt-2 w-full"></audio>`; break;
+                    case 'video': mediaHTML = `<video controls muted playsinline src="${clue.content}" class="mt-2 rounded-lg w-full" onerror="this.outerHTML='<div class=\\'text-red-400 text-sm p-2 bg-red-900/50 rounded-lg\\'>Error al cargar el vídeo.</div>'"></video>`; break;
+                    case 'link': mediaHTML = `<a href="${clue.content}" target="_blank" rel="noopener noreferrer" class="mt-2 inline-flex items-center gap-2 bg-indigo-600 hover:bg-indigo-500 text-white font-semibold py-2 px-4 rounded-lg transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"/><path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"/></svg><span>Abrir Enlace</span></a>`; break;
                 }
-                
-                // Render the media element if it exists.
-                if (clue.type !== 'text' && clue.content) {
-                    switch (clue.type) {
-                        case 'image': mediaHTML = `<img src="${clue.content}" alt="Pista" class="mt-2 rounded-lg w-full h-auto object-cover max-h-96">`; break;
-                        case 'audio': mediaHTML = `<audio controls src="${clue.content}" class="mt-2 w-full">Audio no soportado.</audio>`; break;
-                        case 'video': mediaHTML = `<video controls src="${clue.content}" class="mt-2 rounded-lg w-full">Vídeo no soportado.</video>`; break;
-                    }
-                }
-
-                return `<div class="flex items-start gap-4 p-4 bg-gray-700/50 rounded-lg"><div class="flex-shrink-0 bg-indigo-600 h-8 w-8 rounded-full flex items-center justify-center font-extrabold text-white text-sm">${index + 1}</div><div class="flex-grow prose prose-invert max-w-none prose-p:text-gray-300">${mainTextHTML}${mediaHTML}</div></div>`;
-            }).join('');
-
-            let ctaOrSolutionHTML = '';
-            if (game.isSolved) {
-                const explanationHTML = game.explanation ? `<p>${game.explanation.replace(/\n/g, '<br>')}</p>` : '<p>No se proporcionó una explicación.</p>';
-                ctaOrSolutionHTML = `<div class="mt-6 border-t-2 border-green-500 pt-6 space-y-4"><h3 class="text-2xl font-bold text-green-400">Solución Final</h3><div class="bg-green-900/50 border border-green-500 rounded-lg p-6 text-center"><p class="text-4xl font-extrabold text-white">${game.solution || 'N/A'}</p>${game.winner ? `<p class="text-lg text-yellow-400 mt-2">¡Adivinado por <strong>${game.winner}</strong>!</p>` : ''}</div><div class="prose prose-invert max-w-none prose-p:text-gray-300 prose-headings:text-white prose-headings:text-xl"><h4>Explicación</h4>${explanationHTML}</div></div>`;
-            } else if (game.googleFormLink) {
-                ctaOrSolutionHTML = `<div class="mt-8 text-center"><a href="${game.googleFormLink}" target="_blank" rel="noopener noreferrer" class="inline-block bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-8 rounded-lg shadow-lg transition-transform transform hover:scale-105">¿Tienes la solución? ¡Adivina aquí!</a></div>`;
             }
+            return `<div class="flex items-start gap-4 p-4 bg-gray-700/50 rounded-lg"><div class="flex-shrink-0 bg-indigo-600 h-8 w-8 rounded-full flex items-center justify-center font-bold text-white text-sm">${index + 1}</div><div class="flex-grow prose prose-invert max-w-none prose-p:text-gray-300 text-sm">${mainTextHTML}${mediaHTML}</div></div>`;
+        }
+
+        function getSolutionHTML(game) {
+            const explanationHTML = game.explanation ? `<p>${game.explanation.replace(/\n/g, '<br>')}</p>` : '<p>No se proporcionó una explicación.</p>';
+            return `<div class="mt-6 border-t-2 border-green-500 pt-6 space-y-4"><h3 class="text-2xl font-bold text-green-400">Solución Final</h3><div class="bg-green-900/50 border border-green-500 rounded-lg p-6 text-center"><p class="text-4xl font-extrabold text-white">${game.solution || 'N/A'}</p>${game.winner ? `<p class="text-lg text-yellow-400 mt-2">¡Adivinado por <strong>${game.winner}</strong>!</p>` : ''}</div><div class="prose prose-invert max-w-none prose-p:text-gray-300 prose-headings:text-white prose-headings:text-xl"><h4>Explicación</h4>${explanationHTML}</div></div>`;
+        }
+
+        function getCtaOrDownloadHTML(game, isFullView) {
+            let buttonHTML = '';
+            if (isFullView) {
+                buttonHTML = `<button id="download-pdf-btn" class="inline-flex items-center gap-2 bg-gray-600 hover:bg-gray-500 text-white font-bold py-3 px-8 rounded-lg shadow-lg transition-transform transform hover:scale-105"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/><path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/></svg>Descargar PDF</button>`;
+            } else if (game.googleFormLink) {
+                buttonHTML = `<a href="${game.googleFormLink}" target="_blank" rel="noopener noreferrer" class="inline-block bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-8 rounded-lg shadow-lg transition-transform transform hover:scale-105">¿Tienes la solución? ¡Adivina aquí!</a>`;
+            }
+            return `<div class="mt-8 text-center">${buttonHTML}</div>`;
+        }
+
+        function renderModalContent(game, mode = 'full', clueIndex = -1) {
             dom.modalTitle.textContent = game.title || 'Misterio';
-            dom.modalContent.innerHTML = `<div class="space-y-4">${cluesHTML}</div>${ctaOrSolutionHTML}`;
+            let contentHTML = '';
+            const availableClues = getVisibleClues(game);
+
+            if (mode === 'pre-solved') {
+                contentHTML = `<div class="text-center space-y-4 p-4"><p>Este misterio ya ha sido resuelto.</p><div class="flex justify-center gap-4"><button id="play-solved-btn" class="bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-2 px-4 rounded-lg">Jugar pista a pista</button><button id="show-solution-btn" class="bg-gray-600 hover:bg-gray-500 text-white font-bold py-2 px-4 rounded-lg">Mostrar solución</button></div></div>`;
+                dom.modalContent.innerHTML = contentHTML;
+                document.getElementById('play-solved-btn').addEventListener('click', () => renderModalContent(game, 'step-by-step', 0));
+                document.getElementById('show-solution-btn').addEventListener('click', () => renderModalContent(game, 'full'));
+            } else if (mode === 'step-by-step') {
+                const cluesToShow = availableClues.slice(0, clueIndex + 1);
+                const cluesHTML = cluesToShow.map((clue, i) => renderClue(clue, i)).join('');
+                let nextButtonHTML = '';
+                if (clueIndex < availableClues.length - 1) {
+                    nextButtonHTML = `<div class="text-center mt-6"><button id="next-clue-btn" class="bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-2 px-4 rounded-lg">Mostrar siguiente pista</button></div>`;
+                } else {
+                    nextButtonHTML = getSolutionHTML(game) + getCtaOrDownloadHTML(game, true);
+                }
+                dom.modalContent.innerHTML = `<div class="space-y-4">${cluesHTML}</div>${nextButtonHTML}`;
+                if (document.getElementById('next-clue-btn')) { document.getElementById('next-clue-btn').addEventListener('click', () => renderModalContent(game, 'step-by-step', clueIndex + 1)); }
+                if (document.getElementById('download-pdf-btn')) { document.getElementById('download-pdf-btn').addEventListener('click', () => downloadGameAsPDF(game, true)); }
+            } else { // 'full' mode for in-progress or showing full solution
+                const allCluesHTML = availableClues.map((clue, i) => renderClue(clue, i)).join('');
+                const solutionHTML = game.isSolved ? getSolutionHTML(game) : '';
+                const ctaHTML = getCtaOrDownloadHTML(game, true);
+                dom.modalContent.innerHTML = `<div id="pdf-content"><div class="space-y-4">${allCluesHTML}</div>${solutionHTML}</div>${ctaHTML}`;
+                if (document.getElementById('download-pdf-btn')) { document.getElementById('download-pdf-btn').addEventListener('click', () => downloadGameAsPDF(game, game.isSolved)); }
+            }
         }
         
         function openModalWithGame(game) {
-            try { renderModalContent(game); dom.modal.classList.add('active'); } 
-            catch (error) { console.error("Error al renderizar el contenido del modal:", error); alert("Hubo un error al intentar mostrar este juego."); }
+            if (game.isSolved) { renderModalContent(game, 'pre-solved'); } 
+            else { renderModalContent(game, 'full'); }
+            dom.modal.classList.add('active');
         }
         
         function closeModal() { dom.modal.classList.remove('active'); dom.modalTitle.textContent = ''; dom.modalContent.innerHTML = ''; }
 
+        function downloadGameAsPDF(game, showSolution) {
+            const element = document.createElement('div');
+            element.className = 'p-8 bg-gray-800 text-gray-200';
+            element.style.width = '800px';
+
+            const visibleClues = getVisibleClues(game);
+            const allCluesHTML = visibleClues.map((clue, i) => renderClue(clue, i)).join('');
+            const solutionHTML = showSolution ? getSolutionHTML(game) : '';
+
+            element.innerHTML = `<h1 class="text-4xl font-bold text-white mb-2">${game.title}</h1><p class="text-gray-400 mb-6 italic">${game.notes || ''}</p><div class="space-y-4">${allCluesHTML}</div>${solutionHTML}`;
+            
+            const opt = { margin: 1, filename: `${game.title.replace(/ /g, '_')}.pdf`, image: { type: 'jpeg', quality: 0.98 }, html2canvas: { scale: 2 }, jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' } };
+            html2pdf().from(element).set(opt).save();
+        }
+
         async function loadGames() {
             const loadingHTML = '<p class="text-center text-gray-400 col-span-full">Cargando misterios...</p>';
-            dom.enCursoContainer.innerHTML = loadingHTML;
-            dom.archivoContainer.innerHTML = loadingHTML;
-
+            dom.enCursoContainer.innerHTML = loadingHTML; dom.archivoContainer.innerHTML = loadingHTML;
             try {
                 const response = await fetch(`${GAMES_INDEX_PATH}?v=${Date.now()}`);
                 if (!response.ok) throw new Error(`El archivo de índice no se encuentra en ${GAMES_INDEX_PATH}`);
                 const gameFiles = await response.json();
                 if (!Array.isArray(gameFiles)) throw new Error("El índice de juegos no es un array válido.");
-
                 const gamePromises = gameFiles.map(async (file) => {
-                    try {
-                        const res = await fetch(`games/${file}?v=${Date.now()}`);
-                        if (!res.ok) throw new Error(`No se pudo cargar ${file}`);
-                        return await res.json();
-                    } catch (error) { console.error(`Error procesando el archivo de juego ${file}:`, error); return null; }
+                    try { const res = await fetch(`games/${file}?v=${Date.now()}`); if (!res.ok) throw new Error(`No se pudo cargar ${file}`); return await res.json(); } 
+                    catch (error) { console.error(`Error procesando el archivo de juego ${file}:`, error); return null; }
                 });
-
                 const games = (await Promise.all(gamePromises)).filter(Boolean);
-
-                dom.enCursoContainer.innerHTML = '';
-                dom.archivoContainer.innerHTML = '';
+                dom.enCursoContainer.innerHTML = ''; dom.archivoContainer.innerHTML = '';
                 games.sort((a, b) => new Date(b.lastUpdated) - new Date(a.lastUpdated));
-
-                let enCursoCount = 0;
-                let archivoCount = 0;
+                let enCursoCount = 0, archivoCount = 0;
                 games.forEach(game => {
                     if (game && game.title) {
                         const card = renderSummaryCard(game);
-                        if (game.isSolved) {
-                            dom.archivoContainer.appendChild(card);
-                            archivoCount++;
-                        } else {
-                            dom.enCursoContainer.appendChild(card);
-                            enCursoCount++;
-                        }
+                        if (game.isSolved) { dom.archivoContainer.appendChild(card); archivoCount++; } 
+                        else { dom.enCursoContainer.appendChild(card); enCursoCount++; }
                     }
                 });
-
                 if (enCursoCount === 0) dom.enCursoContainer.innerHTML = '<p class="text-center text-gray-400 col-span-full">Aún no hay misterios en curso. ¡Vuelve pronto!</p>';
                 if (archivoCount === 0) dom.archivoContainer.innerHTML = '<p class="text-center text-gray-400 col-span-full">Aún no hay misterios resueltos.</p>';
-
             } catch (error) {
                 console.error("Error al cargar el índice de juegos:", error);
-                const errorHTML = `<p class="text-center text-red-500 col-span-full">Error fatal al cargar los juegos. Revisa la consola (F12) para más detalles.</p>`;
-                dom.enCursoContainer.innerHTML = errorHTML;
-                dom.archivoContainer.innerHTML = '';
+                const errorHTML = `<p class="text-center text-red-500 col-span-full">Error fatal al cargar los juegos. Revisa la consola (F12).</p>`;
+                dom.enCursoContainer.innerHTML = errorHTML; dom.archivoContainer.innerHTML = '';
             }
         }
         
@@ -211,22 +224,16 @@
                     dom.tabs.forEach(t => t.classList.remove('active'));
                     event.currentTarget.classList.add('active');
                     dom.tabContents.forEach(contentPanel => {
-                        if (contentPanel.id === targetId) {
-                            contentPanel.classList.remove('hidden');
-                        } else {
-                            contentPanel.classList.add('hidden');
-                        }
+                        if (contentPanel.id === targetId) { contentPanel.classList.remove('hidden'); } 
+                        else { contentPanel.classList.add('hidden'); }
                     });
                 });
             });
-            
             dom.modalCloseBtn.addEventListener('click', closeModal);
             dom.modal.addEventListener('click', (e) => { if (e.target === dom.modal) closeModal(); });
             document.addEventListener('keydown', (e) => { if (e.key === "Escape" && dom.modal.classList.contains('active')) closeModal(); });
-
             loadGames();
         }
-
         init();
     </script>
 </body>
